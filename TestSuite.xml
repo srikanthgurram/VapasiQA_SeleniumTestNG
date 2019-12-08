@@ -4,12 +4,12 @@
 <suite name="Spree E2E Tests" verbose="1" >
     <parameter name="browser" value="chrome"></parameter>
     <test name="Regression">
-        <groups>
-            <run>
-                <exclude name="smoke"></exclude>
-                <include name="regression"></include>
-            </run>
-        </groups>
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <exclude name="smoke"></exclude>-->
+<!--                <include name="regression"></include>-->
+<!--            </run>-->
+<!--        </groups>-->
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ProductSearch"/>

@@ -6,16 +6,17 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import suite.SuiteManager;
+import util.ConfigFileReader;
+import util.DriverManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProductCheckout {
+public class ProductCheckout extends SuiteManager {
 
     @Test(groups = {"smoke"})
     public void verifyAddToCart(){
         // variables
-        String baseUrl = "https://spree-vapasi-prod.herokuapp.com/";
-        String chromeDriverPath = System.getProperty("user.dir")+"/"+"drivers/chromedriver";
         String searchBarSelector = "//*[@id=\"keywords\"]";
         String productName = "Tote";
         String searchButtonSelector = "#search-bar > form > input.btn.btn-success";
@@ -26,50 +27,34 @@ public class ProductCheckout {
         String checkoutButtonSelector = "checkout-link";
 
         String shoppingCartPageTitle = "//*[@id=\"content\"]/div/h1";
-        // WebDriver initialization
-        WebDriver driver;
-
-        // Setup chrome driver
-        System.setProperty("webdriver.chrome.driver", chromeDriverPath);
-        driver = new ChromeDriver();
-
-        //implicit timeout
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-
-        // Launch URL
-        driver.get(baseUrl);
 
         // enter product name in search bar
-        WebElement searchBar = driver.findElement(By.xpath(searchBarSelector));
+        WebElement searchBar = DriverManager.driver.findElement(By.xpath(searchBarSelector));
         searchBar.clear();
         searchBar.sendKeys(productName);
 
         // Click on Search button
-        driver.findElement(By.cssSelector(searchButtonSelector)).click();
+        DriverManager.driver.findElement(By.cssSelector(searchButtonSelector)).click();
 
         // Get search results
-        WebElement searchResult = driver.findElement(By.xpath(productSearchResult));
+        WebElement searchResult = DriverManager.driver.findElement(By.xpath(productSearchResult));
         searchResult.click();
 
         // Assert by Product Description title
-        Assert.assertTrue(driver.findElement(By.xpath(productTitle)).getText().contains(productName), "Product Description Not Found");
+        Assert.assertTrue(DriverManager.driver.findElement(By.xpath(productTitle)).getText().contains(productName), "Product Description Not Found");
 
         // enter product quantity
-        WebElement productQuantity = driver.findElement(By.id(productQuantitySelector));
+        WebElement productQuantity = DriverManager.driver.findElement(By.id(productQuantitySelector));
         productQuantity.clear();
         productQuantity.sendKeys("1");
 
         // Click on Add to Cart button
-        driver.findElement(By.id(addToCartButtonSelector)).click();
+        DriverManager.driver.findElement(By.id(addToCartButtonSelector)).click();
 
         // Assert Page title
-        Assert.assertTrue(driver.findElement(By.xpath(shoppingCartPageTitle)).getText().contains("Shopping Cart"), "Shopping Cart Page Title not found");
+        Assert.assertTrue(DriverManager.driver.findElement(By.xpath(shoppingCartPageTitle)).getText().contains("Shopping Cart"), "Shopping Cart Page Title not found");
 
         // Assert Checkout Button
-        Assert.assertTrue(driver.findElement(By.id(checkoutButtonSelector)).isEnabled(), "Checkout Button NOT found");
-
-        // Quit page
-        driver.quit();
+        Assert.assertTrue(DriverManager.driver.findElement(By.id(checkoutButtonSelector)).isEnabled(), "Checkout Button NOT found");
     }
 }
