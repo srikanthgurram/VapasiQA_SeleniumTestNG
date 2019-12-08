@@ -18,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 public class LoginTest extends SuiteManager {
 
     @Test(groups = {"smoke", "regression"})
-    public void login(){
-        // test data
-        String loginId="vapasi@thoughtworks.com";
-        String password = "test123";
+    @Parameters({"username", "password"})
+    public void login(@Optional("vapasi@thoughtworks.com") String loginId, @Optional("test123") String password){
+
         // Locators
         String loginLinkSelector = "#link-to-login > a";
         String emailInput = "#spree_user_email";
@@ -45,7 +44,7 @@ public class LoginTest extends SuiteManager {
         DriverManager.driver.findElement(By.cssSelector(loginButton)).click();
     }
 
-    @Test(dependsOnMethods = "login", groups = {"regression", "smoke"})
+    @Test(groups = {"regression", "smoke"}, priority = 1)
     public void verifyLogin(){
         String loginMessageSelector = "#content > div.alert.alert-success";
 
@@ -59,7 +58,7 @@ public class LoginTest extends SuiteManager {
         Assert.assertTrue(loginMessage.getText().contains(loginMessageText), "Login Alert message NOT Found");
     }
 
-    @Test(dependsOnMethods = {"login"}, groups = {"regression", "smoke"})
+    @Test(groups = {"regression", "smoke"}, priority = 2)
     public void verifyLogout(){
         String signoutLinkSelector = "//*[@id=\"nav-bar\"]/li[2]/a";
         String signoutMessageLocator = "#content > div.alert.alert-notice";

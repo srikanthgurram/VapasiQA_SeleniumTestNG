@@ -10,6 +10,8 @@
 <!--                <include name="regression"></include>-->
 <!--            </run>-->
 <!--        </groups>-->
+        <parameter name="username" value="vapasi@thoughtworks.com"></parameter>
+        <parameter name="password" value="test123"></parameter>
         <classes>
             <class name="tests.LoginTest"/>
             <class name="tests.ProductSearch"/>
