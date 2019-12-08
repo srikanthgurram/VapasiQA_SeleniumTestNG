@@ -11,9 +11,9 @@
             </run>
         </groups>
         <classes>
-            <class name="LoginTest"/>
-            <class name="ProductSearch"/>
-            <class name="ProductCheckout"/>
+            <class name="tests.LoginTest"/>
+            <class name="tests.ProductSearch"/>
+            <class name="tests.ProductCheckout"/>
         </classes>
     </test>
 </suite>
