@@ -12,7 +12,7 @@ import util.DriverManager;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class ProductSearch extends SuiteManager {
+public class ProductSearchTest extends SuiteManager {
 
     @Test(groups = {"regression"})
     public void searchForProduct(){

@@ -14,7 +14,7 @@ public class ConfigFileReader {
 
         try {
             this.prop = new Properties();
-            String configFilePath = System.getProperty("user.dir") + "/" + "src/test/resources/testdata/config" + "/" + configFileName;
+            String configFilePath = System.getProperty("user.dir") + "/" + "src/test/resources/config" + "/" + configFileName;
             inputFileStream = new FileInputStream(configFilePath);
             prop.load(inputFileStream);
         } catch (FileNotFoundException e){

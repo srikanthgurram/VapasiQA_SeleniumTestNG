@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import suite.SuiteManager;
+import testdata.LoginCredentials;
 import util.ConfigFileReader;
 import util.DriverManager;
 
@@ -17,10 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTest extends SuiteManager {
 
-    @Test(groups = {"smoke", "regression"})
-    @Parameters({"username", "password"})
-    public void login(@Optional("vapasi@thoughtworks.com") String loginId, @Optional("test123") String password){
-
+    @Test(dataProvider = "loginCredentials", dataProviderClass = LoginCredentials.class)
+//    @Parameters({"username", "password"})
+    public void login(String loginId, String password){
         // Locators
         String loginLinkSelector = "#link-to-login > a";
         String emailInput = "#spree_user_email";
@@ -44,7 +44,7 @@ public class LoginTest extends SuiteManager {
         DriverManager.driver.findElement(By.cssSelector(loginButton)).click();
     }
 
-    @Test(groups = {"regression", "smoke"}, priority = 1)
+    @Test(priority = 1)
     public void verifyLogin(){
         String loginMessageSelector = "#content > div.alert.alert-success";
 
@@ -58,7 +58,7 @@ public class LoginTest extends SuiteManager {
         Assert.assertTrue(loginMessage.getText().contains(loginMessageText), "Login Alert message NOT Found");
     }
 
-    @Test(groups = {"regression", "smoke"}, priority = 2)
+    @Test(priority = 2)
     public void verifyLogout(){
         String signoutLinkSelector = "//*[@id=\"nav-bar\"]/li[2]/a";
         String signoutMessageLocator = "#content > div.alert.alert-notice";

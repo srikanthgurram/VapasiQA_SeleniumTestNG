@@ -16,7 +16,7 @@ public class SuiteManager {
     public void startDriver(){
         driverManager = new DriverManager();
         //implicit timeout
-        DriverManager.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        DriverManager.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterSuite(alwaysRun = true)

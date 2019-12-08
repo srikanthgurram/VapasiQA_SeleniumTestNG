@@ -12,7 +12,7 @@ import util.DriverManager;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProductCheckout extends SuiteManager {
+public class ProductCheckoutTest extends SuiteManager {
 
     @Test(groups = {"smoke"})
     public void verifyAddToCart(){
