@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Spree E2E Tests" verbose="1" >
+    <parameter name="browser" value="chrome"></parameter>
+    <test name="Regression">
+        <groups>
+            <run>
+                <exclude name="smoke"></exclude>
+                <include name="regression"></include>
+            </run>
+        </groups>
+        <classes>
+            <class name="LoginTest"/>
+            <class name="ProductSearch"/>
+            <class name="ProductCheckout"/>
+        </classes>
+    </test>
+</suite>
