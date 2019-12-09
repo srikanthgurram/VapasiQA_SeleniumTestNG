@@ -6,7 +6,6 @@ import org.testng.annotations.BeforeSuite;
 import util.ConfigFileReader;
 import util.DriverManager;
 
-import java.util.concurrent.TimeUnit;
 
 public class SuiteManager {
     DriverManager driverManager;
@@ -15,8 +14,6 @@ public class SuiteManager {
     @BeforeSuite(alwaysRun = true)
     public void startDriver(){
         driverManager = new DriverManager();
-        //implicit timeout
-        DriverManager.driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterSuite(alwaysRun = true)
