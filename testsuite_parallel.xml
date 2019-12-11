@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Spree E2E Tests" verbose="1" thread-count="2" parallel="tests">
+<parameter name="browser" value="chrome"></parameter>
+<test name="TestChrome">
+    <classes>
+        <class name="tests.LoginTest"/>
+    </classes>
+</test>
+<parameter name="browser" value="firefox"></parameter>
+<test name="TestFirefox">
+    <classes>
+        <class name="tests.LoginTest"/>
+    </classes>
+</test>
+</suite>

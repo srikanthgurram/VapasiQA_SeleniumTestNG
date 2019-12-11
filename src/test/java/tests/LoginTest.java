@@ -14,7 +14,7 @@ public class LoginTest extends SuiteManager {
 
     @Test(dataProvider = "loginCredentials", dataProviderClass = LoginCredentials.class)
 //    @Parameters({"username", "password"})
-    public void login(String loginId, String password){
+    public void login(@Optional("test123@gmail.com") String loginId, @Optional("password") String password){
         // Locators
         String loginLinkSelector = "#link-to-login > a";
         String emailInput = "#spree_user_email";
